@@ -26,6 +26,6 @@ app.post('/login', function (req, res) {
   }
 });
 
-// app.listen(8080);
+app.listen(8080);
 module.exports = app
 console.log('Server is listening on port 8080');
