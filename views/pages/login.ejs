@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <section class="section">
+      <div class="container is-centered">
+        <h1 class="title">Login</h1>
+        <p class="subtitle">Enter your username and password</p>
+      </div>
+
+      <div class="container mt-5">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <% if (typeof locals.success !== 'undefined' && locals.success === false) { %>
+            <div class="notification is-danger">Invalid username and password. Try again.</div>
+            <% } %>
+
+            <form action="/login" method="post">
+              <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    name="username"
+                    type="text"
+                    placeholder="Enter username"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    name="password"
+                    type="password"
+                    placeholder="Enter password"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Login</button>
+                </div>
+                <div class="control">
+                  <a href="/" class="button is-text">Cancel</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>
