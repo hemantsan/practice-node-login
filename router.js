@@ -1,18 +1,21 @@
 const express = require('express');
 const Developer = require('./schemas/DeveloperSchema');
 const router = express.Router();
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
+const { generateAccessToken } = require('./token');
 
 router.get('/', (req, res) => {
   res.render('pages/index');
 });
 
 router.get('/add-developer', (req, res) => {
-  res.render('pages/add-dev');
+  const token = generateAccessToken({devApp: 'dev-app'});
+  res.render('pages/add-dev', { token: token });
 });
 
 router.get('/list-developers', async (req, res) => {
-  await Developer.find()
+  await Developer.find({})
+    .skip(0)
     .limit(10)
     .then((response) => {
       res.render('pages/list-dev', { response: response, status: 'success' });
